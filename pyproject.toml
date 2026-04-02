@@ -1,0 +1,6 @@
+[project]
+name = "code-review-agent"
+version = "0.1.0"
+description = "Scaffold for an autonomous code review agent"
+requires-python = ">=3.11"
+
