@@ -1,9 +1,19 @@
+from dataclasses import dataclass, field
+
 from agents.reviewer import ReviewFinding
 from github.client import GitHubClient
 
 
+@dataclass(slots=True)
 class ActionResult:
-    pass
+    success: bool
+    action_type: str
+    target_url: str = ""
+    branch_name: str = ""
+    commit_sha: str = ""
+    created_ids: list[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=list)
+    metadata: dict[str, str] = field(default_factory=dict)
 
 
 class ActionAgent:

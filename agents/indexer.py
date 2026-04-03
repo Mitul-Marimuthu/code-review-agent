@@ -1,12 +1,21 @@
 from pathlib import Path
+from dataclasses import dataclass, field
 
 from rag.chunker import CodeChunk, CodeChunker
 from rag.embedder import Embedder
 from rag.store import VectorStore
 
 
+@dataclass(slots=True)
 class IndexingResult:
-    pass
+    repository_path: str
+    total_files_scanned: int
+    total_chunks_created: int
+    total_chunks_embedded: int
+    indexed_files: list[str] = field(default_factory=list)
+    skipped_files: list[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=list)
+    metadata: dict[str, str] = field(default_factory=dict)
 
 
 class IndexerAgent:

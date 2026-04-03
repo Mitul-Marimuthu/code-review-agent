@@ -1,8 +1,17 @@
 from rag.chunker import CodeChunk
+from dataclasses import dataclass, field
 
 
+@dataclass(slots=True)
 class RetrievedContext:
-    pass
+    chunk_id: str
+    file_path: str
+    symbol_name: str
+    content: str
+    score: float
+    start_line: int
+    end_line: int
+    metadata: dict[str, str] = field(default_factory=dict)
 
 
 class VectorStore:

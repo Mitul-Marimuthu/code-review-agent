@@ -1,8 +1,21 @@
 from pathlib import Path
+from dataclasses import dataclass, field
 
 
+@dataclass(slots=True)
 class CodeChunk:
-    pass
+    chunk_id: str
+    file_path: str
+    symbol_name: str
+    chunk_type: str
+    language: str
+    start_line: int
+    end_line: int
+    content: str
+    summary: str = ""
+    imports: list[str] = field(default_factory=list)
+    references: list[str] = field(default_factory=list)
+    metadata: dict[str, str] = field(default_factory=dict)
 
 
 class CodeChunker:
