@@ -2,12 +2,13 @@ from dataclasses import dataclass, field
 
 from agents.reviewer import ReviewFinding
 from github.client import GitHubClient
+from models import ActionType
 
 
 @dataclass(slots=True)
 class ActionResult:
     success: bool
-    action_type: str
+    action_type: ActionType
     target_url: str = ""
     branch_name: str = ""
     commit_sha: str = ""

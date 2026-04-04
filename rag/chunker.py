@@ -1,13 +1,15 @@
 from pathlib import Path
 from dataclasses import dataclass, field
 
+from models import ChunkType
+
 
 @dataclass(slots=True)
 class CodeChunk:
     chunk_id: str
     file_path: str
     symbol_name: str
-    chunk_type: str
+    chunk_type: ChunkType
     language: str
     start_line: int
     end_line: int

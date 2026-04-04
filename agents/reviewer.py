@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 
 from agents.retriever import RetrieverAgent
 from github.client import GitHubClient, PullRequestContext
+from models import FindingCategory, FindingSeverity, ReviewRisk
 from prompts.review_prompt import build_review_prompt
 
 
@@ -10,8 +11,8 @@ class ReviewFinding:
     finding_id: str
     title: str
     description: str
-    severity: str
-    category: str
+    severity: FindingSeverity
+    category: FindingCategory
     file_path: str
     line_start: int
     line_end: int
@@ -29,7 +30,7 @@ class ReviewResult:
     pr_number: int
     summary: str
     findings: list[ReviewFinding] = field(default_factory=list)
-    overall_risk: str = "unknown"
+    overall_risk: ReviewRisk = ReviewRisk.UNKNOWN
     model_name: str = ""
     prompt_version: str = ""
     metadata: dict[str, str] = field(default_factory=dict)

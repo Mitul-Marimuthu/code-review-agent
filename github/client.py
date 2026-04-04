@@ -1,10 +1,12 @@
 from dataclasses import dataclass, field
 
+from models import FileChangeStatus
+
 
 @dataclass(slots=True)
 class ChangedFile:
     path: str
-    status: str
+    status: FileChangeStatus
     additions: int = 0
     deletions: int = 0
     patch: str = ""
